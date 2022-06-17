@@ -33,7 +33,7 @@ def load_indeed_jobs_div(job_title, location):
     return job_soup
 
 def extracted_info_indeed(job_soup, desired_char):
-    job_elems = job_soup.find_all('div', class_='jobsearch-ResultsList')
+    job_elems = job_soup.find_all('td', class_='resultsContent')
     
     cols = []
     extracted_info = []
@@ -52,7 +52,7 @@ def extracted_info_indeed(job_soup, desired_char):
             companies.append(company_indeed(job_elem))
         extracted_info.append(companies)
 
-    if 'link' in desired_char:
+    if 'links' in desired_char:
         links = []
         cols.append('links')
         for job_elem in job_elems:
@@ -61,7 +61,7 @@ def extracted_info_indeed(job_soup, desired_char):
 
     if 'date_listed' in desired_char:
         dates = []
-        cols.append('dates')
+        cols.append('date_listed')
         for job_elem in job_elems:
             dates.append(date_indeed(job_elem))
         extracted_info.append(dates)
@@ -74,10 +74,10 @@ def extracted_info_indeed(job_soup, desired_char):
     num_listings = len(extracted_info[0])
     
     return jobs_list, num_listings
-    print('{} new job postings retrieved. Stored in {}.'.format(num_listings, filename))
+#     print('{} new job postings retrieved. Stored in {}.'.format(num_listings, filename))
     
 def job_title_indeed(job_elem):
-    title_elem = job_elem.find('span', title_='title')
+    title_elem = job_elem.find('h2', title_='title')
     title = title_elem.text.strip()
     return title
 
