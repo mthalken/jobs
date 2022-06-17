@@ -33,7 +33,7 @@ def load_indeed_jobs_div(job_title, location):
     return job_soup
 
 def extracted_info_indeed(job_soup, desired_char):
-    job_elems = job_soup.find_all('div', class_ = 'SerpJobCard')
+    job_elems = job_soup.find_all('div', class_='jobsearch-ResultsList')
     
     cols = []
     extracted_info = []
@@ -77,12 +77,12 @@ def extracted_info_indeed(job_soup, desired_char):
     print('{} new job postings retrieved. Stored in {}.'.format(num_listings, filename))
     
 def job_title_indeed(job_elem):
-    title_elem = job_elem.find('h2', class_ = 'jobTitle twoLineTitle')
+    title_elem = job_elem.find('span', title_='title')
     title = title_elem.text.strip()
     return title
 
 def company_indeed(job_elem):
-    company_elem = job_elem.find('span', class_ = 'company')
+    company_elem = job_elem.find('span', class_='company')
     company = company_elem.text.strip()
     return company
 
@@ -92,6 +92,6 @@ def link_indeed(job_elem):
     return link
 
 def date_indeed(job_elem):
-    date_elem = job_elem.find('span', class_ = 'date')
+    date_elem = job_elem.find('span', class_='date')
     date = date_elem.text.strip()
     return date
