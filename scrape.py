@@ -1,5 +1,5 @@
-import start_of_scrape
-from start_of_scrape import find_jobs
+import scraping
+from scraping import find_jobs
 
 desired_char = ['titles', 'companies', 'links', 'date_listed']
 

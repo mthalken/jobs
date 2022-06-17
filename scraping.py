@@ -77,7 +77,7 @@ def extracted_info_indeed(job_soup, desired_char):
     print('{} new job postings retrieved. Stored in {}.'.format(num_listings, filename))
     
 def job_title_indeed(job_elem):
-    title_elem = job_elem.find('h2', class_ = 'title')
+    title_elem = job_elem.find('h2', class_ = 'jobTitle twoLineTitle')
     title = title_elem.text.strip()
     return title
 
