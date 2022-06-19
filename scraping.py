@@ -29,11 +29,11 @@ def load_indeed_jobs_div(job_title, location):
     url = ('https://www.indeed.com/jobs?' + urllib.parse.urlencode(getVars))
     page = requests.get(url)
     soup = bs(page.content, 'html.parser')
-    job_soup = soup.find(id = 'resultsCol')
+    job_soup = soup.find(id='resultsCol')
     return job_soup
 
 def extracted_info_indeed(job_soup, desired_char):
-    job_elems = job_soup.find_all('td', class_='resultsContent')
+    job_elems = job_soup.find_all('a', href='mosaic-provider-jobcards')
     
     cols = []
     extracted_info = []
